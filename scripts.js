@@ -18,8 +18,10 @@ function addListItem(pokemon) {
   const allPokemon = document.querySelector('.pokemon-list');
   const listItem = document.createElement('li');
   const button = document.createElement('button');
-  button.innerText = pokemon.name;
+  button.innerHTML = pokemon.name;
   button.classList.add('button');
+  button.setAttribute('data-toggle', 'modal');
+  button.setAttribute('data-target', '#pokemon-modal')
   button.classList.add('btn')
   listItem.appendChild(button);
   allPokemon.appendChild(listItem);
@@ -34,8 +36,9 @@ function addListItem(pokemon) {
       return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
+        cap_name = item.name.charAt(0).toUpperCase() + item.name.slice(1);
         const pokemon = {
-          name: item.name,
+          name: cap_name,
           detailsUrl: item.url
         };
         add(pokemon);
@@ -62,6 +65,7 @@ function loadDetails(item) {
 
 function showDetails(pokemon) {
   loadDetails(pokemon).then(function () {
+    showModal(pokemon)
   });
 }
 
@@ -80,4 +84,12 @@ pokemonRepository.loadList().then(function() {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+function showModal(p){
+  let e=$(".modal-body"),t=$(".modal-title");t.empty(),e.empty();
+  const name = p.name;
+  const cap_name = name.charAt(0).toUpperCase() + name.slice(1);
+  let a=$("<h1>"+cap_name+"</h1>"),d=$('<img class="modal-img">');d.attr("src",p.imageUrl);
+  let l=$("<p>Height: "+p.height+"</p>"),i=$("<p>Weight: "+p.weight+"</p>"),m=$("<p>Type(s): "+p.types+"</p>");t.append(a),e.append(d),e.append(l),e.append(i),e.append(m)
+}
 
