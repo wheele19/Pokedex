@@ -14,6 +14,21 @@ const pokemonRepository = (function() {
   }
 }
 
+function addListItem(pokemon) {
+  const allPokemon = document.querySelector('.pokemon-list');
+  const listItem = document.createElement('li');
+  const button = document.createElement('button');
+  button.innerText = pokemon.name;
+  button.classList.add('button');
+  button.classList.add('btn')
+  listItem.appendChild(button);
+  allPokemon.appendChild(listItem);
+  button.addEventListener('click', function(event) 
+  {
+    showDetails(pokemon); 
+  });
+};
+
   function loadList() {
       return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -53,6 +68,7 @@ function showDetails(pokemon) {
   return {
     getAll,
     add,
+    addListItem,
     loadList,
     loadDetails,
     showDetails
@@ -61,5 +77,7 @@ function showDetails(pokemon) {
 
 pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function(pokemon){
+    pokemonRepository.addListItem(pokemon);
   });
 });
+
