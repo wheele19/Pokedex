@@ -104,10 +104,11 @@ function showModal(p){
   let e=$(".modal-body"),t=$(".modal-title");t.empty(),e.empty();
   const name = p.name;
   const cap_name = name.charAt(0).toUpperCase() + name.slice(1);
-
+  const type = p.types;
+  const cap_type = type.charAt(0).toUpperCase() + type.slice(1);
   let a=$("<h1>"+cap_name+"</h1>"),d=$('<img class="modal-img">');d.attr("src",p.imageUrl);
 
 
-  let l=$("<h3><p>Height:\u00A0\u00A0\u00A0\u00A0\u00A0</p>"+ p.height+"ft</h3>"),i=$("<h3><p>Weight:\u00A0\u00A0\u00A0\u00A0</p>"+p.weight+"lbs</h3>"),m=$("<h3><p>Types:\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0</p>"+p.types+"</h3>");t.append(a),e.append(d),e.append(l),e.append(i),e.append(m)
+  let l=$("<h3><p>Height:\u00A0\u00A0\u00A0\u00A0\u00A0</p>"+ p.height+"ft</h3>"),i=$("<h3><p>Weight:\u00A0\u00A0\u00A0\u00A0</p>"+p.weight+"lbs</h3>"),m=$("<h3><p>Types:\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0</p>"+cap_type+"</h3>");t.append(a),e.append(d),e.append(l),e.append(i),e.append(m)
 }
 
