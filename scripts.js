@@ -1,6 +1,6 @@
 const pokemonRepository = (function() {
   const pokemonList = [];
-  const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=51';
+  const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
 
   function getAll() {
     console.table(pokemonList)
