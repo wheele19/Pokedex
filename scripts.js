@@ -3,6 +3,21 @@ const pokemonRepository = (function() {
   const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=51';
 
   function getAll() {
+    console.table(pokemonList)
+    pokemonList.sort((a, b) => {
+      let na = a.name
+          nb = b.name
+  
+      if (na < nb) {
+          return -1;
+      }
+      if (na > nb) {
+          return 1;
+      }
+      return 0;
+  });
+  //console.table(pokemonList)
+
     return pokemonList;
   };
 
@@ -56,7 +71,7 @@ function loadDetails(item) {
   }).then(function (details) {
     item.imageUrl = details.sprites.front_default;
     item.height = details.height;
-    item.types = details.types.map((type) => type.type.name).join(',');
+    item.types = details.types.map((type) => type.type.name).join(', ');
     item.weight = details.weight;
   }).catch(function (e) {
     console.error(e);
@@ -89,7 +104,10 @@ function showModal(p){
   let e=$(".modal-body"),t=$(".modal-title");t.empty(),e.empty();
   const name = p.name;
   const cap_name = name.charAt(0).toUpperCase() + name.slice(1);
+
   let a=$("<h1>"+cap_name+"</h1>"),d=$('<img class="modal-img">');d.attr("src",p.imageUrl);
-  let l=$("<p>Height: "+p.height+"</p>"),i=$("<p>Weight: "+p.weight+"</p>"),m=$("<p>Type(s): "+p.types+"</p>");t.append(a),e.append(d),e.append(l),e.append(i),e.append(m)
+
+
+  let l=$("<h3><p>Height: </p>"+p.height+"ft</h3>"),i=$("<h3><p>Weight: </p>"+p.weight+"lbs</h3>"),m=$("<h3><p>Types: </p>"+p.types+"</h3>");t.append(a),e.append(d),e.append(l),e.append(i),e.append(m)
 }
 

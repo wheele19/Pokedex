@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #ffd5b9;
-    --secondary-color: #ff7e28;
+    --primary-color: #ffdfc8;
+    --secondary-color: #ff761b;
   }
   
   *{
@@ -28,7 +28,8 @@
   {
     scale: 1.1;
     opacity: 0.8;
-    box-shadow: 5px 10px #4a4a4a;
+    box-shadow: 5px 10px #0000002f;
+    color: black;
 
   }
 
@@ -43,7 +44,7 @@
   
   li {
     list-style: none;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
   
   .container {
@@ -98,6 +99,19 @@
     font-weight: 300;
     color: black;
   }
+
+  h3 {
+
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  p {
+    white-space: nowrap;
+    margin: 8px 8px 8px 0px;
+    }
   
   /* media queries */
   @media all and (max-width : 500px) {
