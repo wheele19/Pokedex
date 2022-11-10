@@ -57,7 +57,6 @@ function addListItem(pokemon) {
           detailsUrl: item.url
         };
         add(pokemon);
-        console.log(pokemon.name);
       });
     }).catch(function (e) {
       console.error(e);
@@ -112,3 +111,71 @@ function showModal(p){
   let l=$("<h3><p>Height:\u00A0\u00A0\u00A0\u00A0\u00A0</p>"+ p.height+"ft</h3>"),i=$("<h3><p>Weight:\u00A0\u00A0\u00A0\u00A0</p>"+p.weight+"lbs</h3>"),m=$("<h3><p>Types:\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0</p>"+cap_type+"</h3>");t.append(a),e.append(d),e.append(l),e.append(i),e.append(m)
 }
 
+function search() {
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('search');
+  filter = input.value.toUpperCase();
+  li = document.getElementById("pokemon-list").getElementsByTagName('li');
+  console.log(li[0].innerText);
+
+  for (i = 0; i < li.length; i++) {
+    a = li[i]
+    txtValue = a.textContent || a.innerText;
+
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+
+var search_enter = document.getElementById("search");
+search_enter.addEventListener("keydown", function (e) {
+    if (e.code === "Enter" || e.code === "NumpadEnter") {  //checks whether the pressed key is "Enter"
+      var input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById('search').value;
+      ul = document.getElementById("pokemon-list")
+      li = ul.getElementsByTagName('li');
+      total_shown = ul.children.length;
+    
+      for (i = 0; i < li.length; i++) {
+        a = li[i]
+         txtValue = a.textContent || a.innerText;
+         txtValue =txtValue.toUpperCase();
+         if (li[i].style.display === "") {
+          var only_name = i;
+         }
+         else {
+          total_shown = total_shown - 1;
+
+
+         }
+         console.log(total_shown);
+
+
+
+
+        if (txtValue == input.toUpperCase()) {
+          a.getElementsByTagName('button')[0].click()
+
+
+        } 
+        
+        else if (total_shown === 1){
+          li[only_name].getElementsByTagName('button')[0].click()
+
+        }
+
+        else {
+          li[i].style.display = "none";
+
+        }
+      }
+
+  
+    }
+    else {
+      return
+    }
+});
